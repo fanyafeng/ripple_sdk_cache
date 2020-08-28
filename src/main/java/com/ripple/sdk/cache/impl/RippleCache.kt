@@ -1,5 +1,6 @@
 package com.ripple.sdk.cache.impl
 
+import androidx.collection.LruCache
 import com.ripple.sdk.cache.IRippleCache
 import java.math.BigDecimal
 
@@ -10,19 +11,22 @@ import java.math.BigDecimal
  * Email: fanyafeng@live.cn
  * Description:
  */
-object RippleCache : IRippleCache {
-    override fun put(key: String, value: String) {
+object RippleCache {
 
-    }
-
-    override fun get(key: String) {
-    }
 }
 
 fun main(args: Array<String>) {
-    val a = 699500L
-    val b = BigDecimal(a)
-    val c = BigDecimal(10_000)
-    val d = b.divide(c, 1, BigDecimal.ROUND_HALF_UP)
-    println(d.toString())
+    val map = LruCache<String, String>(5)
+    map.put("a", "A")
+    map.put("b", "B")
+    map.put("c", "C")
+    map.put("d", "D")
+    map.put("e", "E")
+    map.put("f", "F")
+    map.put("g", "G")
+    map.get("a")
+    map.snapshot().forEach { (key, value) ->
+        println(value)
+    }
 }
+
